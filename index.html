@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consensus — Debate Orchestration System</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/14673/14673464.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== LANDING SCREEN ===== -->
+<div id="landing-screen" class="screen active">
+  <div class="landing-nav">
+    <button id="meet-panel-btn" class="btn-link">Meet the Panelists →</button>
+  </div>
+  <div class="landing-content">
+    <div class="landing-left">
+      <div class="landing-header">
+        <h1 class="title">Consensus</h1>
+        <p class="subtitle">You're wrestling with a big decision.</p>
+        <p class="subtitle-secondary">Five distinct intelligences debate every angle of your thinking—and emerge with clarity.</p>
+      </div>
+      <div class="landing-features">
+        <div class="feature">
+          <span class="feature-icon">🎭</span>
+          <span class="feature-text">5 Panelists</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🎙️</span>
+          <span class="feature-text">Real Audio</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">💭</span>
+          <span class="feature-text">Clarity</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="landing-right">
+      <div class="landing-form-wrapper">
+        <h2 class="form-title">What's on your mind?</h2>
+        <div class="form-group">
+          <label for="decision-input">Your decision</label>
+          <textarea 
+            id="decision-input" 
+            placeholder="Should I leave my job to start a company? Should I move? Should I go back to school?"
+            rows="5"
+          ></textarea>
+        </div>
+        <button id="convene-btn" class="btn-primary pulse">
+          CONVENE PANEL
+        </button>
+        
+        <div class="prompts-section">
+          <p class="prompts-label">Quick prompts:</p>
+          <div class="prompts-list">
+          <button type="button" class="prompt-tag" data-prompt="I'm considering leaving my job at a stable company to co-found a startup with college friends. It feels like now or never, but I have student loans and family financial obligations. I've got ~$40k in savings.">
+            Leave job for startup?
+          </button>
+          <button type="button" class="prompt-tag" data-prompt="Should I pursue a PhD or enter industry? I love research and intellectual rigor, but I'm also drawn to building real products, shipping fast, and making immediate impact. Money and prestige aren't the main factors.">
+            PhD vs Industry?
+          </button>
+          <button type="button" class="prompt-tag" data-prompt="My company wants to migrate our entire codebase from Node.js to Rust. Engineering team is split: some see it as technical debt cleanup, others worry it'll distract us for 6+ months and kill momentum on features customers are asking for.">
+            Tech stack migration?
+          </button>
+          <button type="button" class="prompt-tag" data-prompt="Should I relocate internationally for a role that's a significant career jump? The opportunity is rare, but I'd be leaving behind my partner, 10-year friend group, and family health situation that might need support soon.">
+            International relocation?
+          </button>
+          <button type="button" class="prompt-tag" data-prompt="Our hackathon team has 48 hours left and we're stuck between 3 directions: a polished MVP of idea A (already half-built), a riskier but more innovative idea B, or pivoting entirely based on feedback from the mentors. What's the strategic play here?">
+            Hackathon pivot or polish?
+          </button>
+        </div>
+        </div>
+        <p class="form-note">Private. No tracking.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MEET THE PANELISTS SCREEN ===== -->
+<div id="panel-intro-screen" class="screen">
+  <div class="container panel-intro-content">
+    <div class="intro-header">
+      <button id="back-to-landing-btn" class="btn-link">← Back</button>
+      <h2>Meet the Panelists</h2>
+      <p>Six distinct perspectives. One shared goal: clarity.</p>
+    </div>
+
+    <div class="panel-intro-grid">
+      <div class="panel-persona-card" data-persona="cassandra">
+        <div class="intro-persona-header">
+          <span class="persona-emoji">🖤</span>
+          <h3>Cassandra</h3>
+        </div>
+        <p class="intro-persona-role">The Risk Assessor</p>
+        <p class="intro-persona-desc">Identifies real threats. Warns of danger with authority. Keeps you grounded in reality.</p>
+      </div>
+
+      <div class="panel-persona-card" data-persona="fortuna">
+        <div class="intro-persona-header">
+          <span class="persona-emoji">✨</span>
+          <h3>Fortuna</h3>
+        </div>
+        <p class="intro-persona-role">The Opportunity Scout</p>
+        <p class="intro-persona-desc">Finds the upside you're not seeing. Challenges assumptions with optimism and warmth.</p>
+      </div>
+
+      <div class="panel-persona-card" data-persona="athena">
+        <div class="intro-persona-header">
+          <span class="persona-emoji">🧠</span>
+          <h3>Athena</h3>
+        </div>
+        <p class="intro-persona-role">The Analyst</p>
+        <p class="intro-persona-desc">Strips away emotion. Analyzes what logic actually says. Cuts through the noise.</p>
+      </div>
+
+      <div class="panel-persona-card" data-persona="sage">
+        <div class="intro-persona-header">
+          <span class="persona-emoji">💚</span>
+          <h3>Sage</h3>
+        </div>
+        <p class="intro-persona-role">The Humanist</p>
+        <p class="intro-persona-desc">Cares about people, not just outcomes. Adds the human cost/benefit everyone misses.</p>
+      </div>
+
+      <div class="panel-persona-card" data-persona="titan">
+        <div class="intro-persona-header">
+          <span class="persona-emoji">⚡</span>
+          <h3>Titan</h3>
+        </div>
+        <p class="intro-persona-role">The Disruptor</p>
+        <p class="intro-persona-desc">Questions the frame itself. Finds the unconventional third option everyone missed.</p>
+      </div>
+
+      <div class="panel-persona-card" data-persona="moderator">
+        <div class="intro-persona-header">
+          <span class="persona-emoji">🎙️</span>
+          <h3>The Moderator</h3>
+        </div>
+        <p class="intro-persona-role">The Arbiter</p>
+        <p class="intro-persona-desc">Listens to all five. Synthesizes the real tensions. Gives YOU a verdict based on your context.</p>
+      </div>
+    </div>
+
+    <div class="intro-footer">
+      <button id="start-debate-from-intro" class="btn-primary">Ready? Start Your Debate</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== INTAKE FORM SCREEN ===== -->
+<div id="intake-screen" class="screen">
+  <div class="container intake-content">
+    <div class="intake-header">
+      <h2>The Orchestration has begun...</h2>
+      <p>Help our panelists assess your worries better.</p>
+    </div>
+
+    <form id="intake-form" class="intake-form">
+      <div class="form-section">
+        <h3>Your decision (read-only)</h3>
+        <textarea id="intake-decision-display" rows="4" readonly></textarea>
+      </div>
+
+      <!-- Q1: Emotional State (was Q2) -->
+      <div class="form-section">
+        <h3>1. How are you leaning right now?</h3>
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="emotional_state" value="decided">
+            I've already decided, just want validation
+          </label>
+          <label>
+            <input type="radio" name="emotional_state" value="optimistic">
+            I'm optimistic but have doubts
+          </label>
+          <label>
+            <input type="radio" name="emotional_state" value="torn">
+            I'm genuinely torn 50/50
+          </label>
+          <label>
+            <input type="radio" name="emotional_state" value="pessimistic">
+            I'm pessimistic but curious
+          </label>
+          <label>
+            <input type="radio" name="emotional_state" value="no_idea">
+            I have no idea
+          </label>
+        </div>
+      </div>
+
+      <!-- Q2: Biggest Worry (was Q3) -->
+      <div class="form-section">
+        <h3>2. What's weighing on you the most?</h3>
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="biggest_worry" value="money">
+            Losing money / resources / time
+          </label>
+          <label>
+            <input type="radio" name="biggest_worry" value="people">
+            Failing and how it affects people I care about
+          </label>
+          <label>
+            <input type="radio" name="biggest_worry" value="regret">
+            Making the wrong choice (regret)
+          </label>
+          <label>
+            <input type="radio" name="biggest_worry" value="fomo">
+            Missing an opportunity (FOMO)
+          </label>
+          <label>
+            <input type="radio" name="biggest_worry" value="other">
+            Something else
+          </label>
+        </div>
+        <div id="custom-worry-container" class="custom-input" style="display: none; margin-top: 12px;">
+          <input 
+            type="text" 
+            id="custom-worry-input" 
+            placeholder="What's on your mind?"
+            maxlength="200"
+          >
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary pulse">LET THE DEBATE BEGIN</button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== DEBATE LOADER SCREEN ===== -->
+<div id="debate-loader-screen" class="screen">
+  <div class="loader-container">
+    <div class="loader-header">
+      <h2>Assembling the panel<span class="loader-dots"><span>.</span><span>.</span><span>.</span></span></h2>
+      <p>Five intelligences convene to debate your decision</p>
+    </div>
+    <div class="panelists-showcase">
+      <div class="showcase-card" data-persona="cassandra">
+        <div class="showcase-card-inner">
+          <span class="showcase-emoji">🖤</span>
+          <h3>Cassandra</h3>
+          <p class="showcase-role">The Risk Assessor</p>
+        </div>
+      </div>
+      <div class="showcase-card" data-persona="fortuna">
+        <div class="showcase-card-inner">
+          <span class="showcase-emoji">✨</span>
+          <h3>Fortuna</h3>
+          <p class="showcase-role">The Opportunity Scout</p>
+        </div>
+      </div>
+      <div class="showcase-card" data-persona="athena">
+        <div class="showcase-card-inner">
+          <span class="showcase-emoji">🧠</span>
+          <h3>Athena</h3>
+          <p class="showcase-role">The Analyst</p>
+        </div>
+      </div>
+      <div class="showcase-card" data-persona="sage">
+        <div class="showcase-card-inner">
+          <span class="showcase-emoji">💚</span>
+          <h3>Sage</h3>
+          <p class="showcase-role">The Humanist</p>
+        </div>
+      </div>
+      <div class="showcase-card" data-persona="titan">
+        <div class="showcase-card-inner">
+          <span class="showcase-emoji">⚡</span>
+          <h3>Titan</h3>
+          <p class="showcase-role">The Disruptor</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Elevator music for loading screen -->
+    <audio id="loader-music" loop style="display: none;" preload="auto">
+      <source src="/public/elevator-music.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+</div>
+
+<!-- ===== PANEL SCREEN ===== -->
+<div id="panel-screen" class="screen">
+  <div class="container panel-content">
+    
+    <!-- Debate Controls -->
+    <div class="panel-controls">
+      <button id="new-query-btn" class="btn-secondary">← New Query</button>
+      <span id="panel-status" class="panel-status">Convening the panel...</span>
+    </div>
+
+    <!-- 5 Persona Cards -->
+    <div class="personas-grid">
+      <div class="persona-card" id="card-cassandra" data-persona="cassandra">
+        <div class="card-header">
+          <div class="persona-title">
+            <span class="persona-emoji">🖤</span>
+            <div class="persona-name-role">
+              <h3>Cassandra</h3>
+              <p>The Risk Assessor</p>
+            </div>
+          </div>
+          <span class="card-order">[1/6]</span>
+        </div>
+        <div class="card-body">
+          <div class="response-text"></div>
+          <div class="cursor">▌</div>
+        </div>
+        <div class="card-footer">
+          <div class="audio-controls">
+            <button class="btn-play" title="Play audio">🎙️ Play</button>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+              <span class="time-display">0:00 / 0:00</span>
+            </div>
+            <span class="quality-indicator">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="persona-card" id="card-fortuna" data-persona="fortuna">
+        <div class="card-header">
+          <div class="persona-title">
+            <span class="persona-emoji">✨</span>
+            <div class="persona-name-role">
+              <h3>Fortuna</h3>
+              <p>The Opportunity Scout</p>
+            </div>
+          </div>
+          <span class="card-order">[2/6]</span>
+        </div>
+        <div class="card-body">
+          <div class="response-text"></div>
+          <div class="cursor">▌</div>
+        </div>
+        <div class="card-footer">
+          <div class="audio-controls">
+            <button class="btn-play" title="Play audio">🎙️ Play</button>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+              <span class="time-display">0:00 / 0:00</span>
+            </div>
+            <span class="quality-indicator">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="persona-card" id="card-athena" data-persona="athena">
+        <div class="card-header">
+          <div class="persona-title">
+            <span class="persona-emoji">🧠</span>
+            <div class="persona-name-role">
+              <h3>Athena</h3>
+              <p>The Analyst</p>
+            </div>
+          </div>
+          <span class="card-order">[3/6]</span>
+        </div>
+        <div class="card-body">
+          <div class="response-text"></div>
+          <div class="cursor">▌</div>
+        </div>
+        <div class="card-footer">
+          <div class="audio-controls">
+            <button class="btn-play" title="Play audio">🎙️ Play</button>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+              <span class="time-display">0:00 / 0:00</span>
+            </div>
+            <span class="quality-indicator">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="persona-card" id="card-sage" data-persona="sage">
+        <div class="card-header">
+          <div class="persona-title">
+            <span class="persona-emoji">💚</span>
+            <div class="persona-name-role">
+              <h3>Sage</h3>
+              <p>The Humanist</p>
+            </div>
+          </div>
+          <span class="card-order">[4/6]</span>
+        </div>
+        <div class="card-body">
+          <div class="response-text"></div>
+          <div class="cursor">▌</div>
+        </div>
+        <div class="card-footer">
+          <div class="audio-controls">
+            <button class="btn-play" title="Play audio">🎙️ Play</button>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+              <span class="time-display">0:00 / 0:00</span>
+            </div>
+            <span class="quality-indicator">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="persona-card" id="card-titan" data-persona="titan">
+        <div class="card-header">
+          <div class="persona-title">
+            <span class="persona-emoji">⚡</span>
+            <div class="persona-name-role">
+              <h3>Titan</h3>
+              <p>The Disruptor</p>
+            </div>
+          </div>
+          <span class="card-order">[5/6]</span>
+        </div>
+        <div class="card-body">
+          <div class="response-text"></div>
+          <div class="cursor">▌</div>
+        </div>
+        <div class="card-footer">
+          <div class="audio-controls">
+            <button class="btn-play" title="Play audio">🎙️ Play</button>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+              <span class="time-display">0:00 / 0:00</span>
+            </div>
+            <span class="quality-indicator">—</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Moderator Card (spans full width) -->
+    <div class="persona-card moderator-card" id="card-moderator" data-persona="moderator">
+      <div class="card-header">
+        <div class="persona-title">
+          <span class="persona-emoji">🎙️</span>
+          <div class="persona-name-role">
+            <h3>The Moderator</h3>
+          </div>
+        </div>
+        <span class="card-order">[6/6]</span>
+      </div>
+      <div class="card-body">
+        <div class="response-text"></div>
+        <div class="cursor">▌</div>
+      </div>
+      <div class="card-footer">
+        <div class="audio-controls">
+          <button class="btn-play" title="Play audio">🎙️ Play</button>
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+            <span class="time-display">0:00 / 0:00</span>
+          </div>
+          <span class="quality-indicator">—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Debate Audio Playlist (combines all 5 + moderator) -->
+    <div id="debate-playlist-section" class="debate-playlist-section" style="display: none; margin-top: 32px;">
+      <div class="playlist-player">
+        <button id="playlist-play-btn" class="btn-play-large">▶ Play Full Debate</button>
+      </div>
+      <audio id="debate-audio" style="display: none;"></audio>
+    </div>
+
+    <!-- Moderator Follow-up Section -->
+    <div id="moderator-followup-section" class="moderator-followup" style="display: none; margin-top: 32px;">
+      <h3>💬 Continue with the Moderator</h3>
+      <p class="followup-prompt">Got something to ramble about? Let it all out. We'll help sort it through with you.</p>
+      <div class="followup-input-group">
+        <textarea id="followup-input" placeholder="Ramble freely here. What's still unresolved for you?" rows="3"></textarea>
+        <button id="followup-submit-btn" class="btn-primary">Sort This Out</button>
+      </div>
+      <div id="followup-response" class="followup-response" style="display: none;">
+        <div class="response-text"></div>
+        <div id="followup-audio-controls" class="audio-controls" style="display: none;">
+          <button class="btn-play" title="Play audio">🎙️ Play</button>
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+            <span class="time-display">0:00 / 0:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="modal.js"></script>
+<script src="personas.js"></script>
+<script src="api.js"></script>
+<script src="tts.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
